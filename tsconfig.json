@@ -1,26 +1,34 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "lib": ["dom", "dom.iterable"],
+    "strict": false,
+    "noImplicitAny": true,
     "allowJs": true,
     "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": false,
+    "noEmit": false,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react",
+    "incremental": true
+  },
+  "files": ["src/react-app-env.d.ts"],
+  "parserOptions": {
+    "project": ["./tsconfig.json"],
+    "exclude": ["webpack.config.js"]
   },
   "include": [
-    "src"
-  ]
+    "src",
+    "**/*.ts",
+    "**/*.tsx",
+    ".prettierrc"
+  ],
+  "exclude": ["node_modules"]
 }

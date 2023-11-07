@@ -1,0 +1,21 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.linkWrapper {
+    display: flex;
+    gap: 30px;
+}
+
+.link {
+    font-size: 20px;
+}
+
+.link:hover {
+    color: rgb(128, 128, 128);
+}
+
+
+

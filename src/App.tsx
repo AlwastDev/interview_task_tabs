@@ -1,25 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { useTabs } from './hooks/useTab';
+import { Header, LazyTabComponent } from './components';
 
 function App() {
+  const { tabs, loading, error } = useTabs();
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <>
+        <Header tabs={tabs} />
+        <Routes>
+          {tabs.map((tab) => (
+            <Route
+              key={tab.id}
+              path={tab.id}
+              element={<LazyTabComponent path={tab.path} />}
+            />
+          ))}
+          <Route path='/' element={<Navigate to={tabs[0].id} replace />} />
+        </Routes>
+      </>
+    </>
   );
 }
 
